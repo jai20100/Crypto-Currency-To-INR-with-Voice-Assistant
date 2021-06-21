@@ -15,7 +15,7 @@ class CurrencyConverter(tk.Frame):
     # Here we define a function with name __init__ and parameters as shown
     def __init__(self,parent,*args,**kwargs):
         tk.Frame.__init__(self,parent,*args,**kwargs)
-
+       # Here we declared all variable names using StringVar()
         self.grid(padx=(20,30), pady= (30,20))
         self.app_font = ("Helvetica", 20, "bold")
         self.parent = parent
