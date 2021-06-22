@@ -16,13 +16,25 @@
 ## App interfaces 
 
 Idle:
+
+
+
  ![App shot](https://user-images.githubusercontent.com/85556510/122933034-e1f86780-d38b-11eb-85e2-f68ea39e5b9a.JPG)
 
+
+
 Choices:
+
+
 ![image](https://user-images.githubusercontent.com/85556510/122935102-b2e2f580-d38d-11eb-8e39-24095e971a62.png)
+
 
 ![image](https://user-images.githubusercontent.com/85556510/122936296-aad78580-d38e-11eb-8002-d2bc5e374fa7.png)
 
+
+
 Demo Conversion:
+
+
 ![Demo 11](https://user-images.githubusercontent.com/85556510/122936810-13befd80-d38f-11eb-9c85-f38ea912d112.JPG)
 
