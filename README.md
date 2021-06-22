@@ -15,7 +15,7 @@
 
 ## App interfaces 
 
-Idle:
+### Idle:
 
 
 
@@ -23,7 +23,7 @@ Idle:
 
 
 
-## Choices:
+### Choices:
 
 
 ![image](https://user-images.githubusercontent.com/85556510/122938925-ca6fad80-d390-11eb-9862-e379d3babffe.png)
@@ -35,7 +35,7 @@ Idle:
 
 
 
-## Demo Conversion:
+### Demo Conversion:
 
 
 
