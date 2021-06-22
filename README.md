@@ -23,17 +23,17 @@ Idle:
 
 
 
-Choices:
+## Choices:
 
 
-![image](https://user-images.githubusercontent.com/85556510/122935102-b2e2f580-d38d-11eb-8e39-24095e971a62.png)
+![image](https://user-images.githubusercontent.com/85556510/122938925-ca6fad80-d390-11eb-9862-e379d3babffe.png)
 
 
 ![image](https://user-images.githubusercontent.com/85556510/122936296-aad78580-d38e-11eb-8002-d2bc5e374fa7.png)
 
 
 
-Demo Conversion:
+## Demo Conversion:
 
 
 ![Demo 11](https://user-images.githubusercontent.com/85556510/122936810-13befd80-d38f-11eb-9c85-f38ea912d112.JPG)
