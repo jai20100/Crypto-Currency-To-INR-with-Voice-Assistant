@@ -1,4 +1,4 @@
-                              #Here is Currency_Converter_With_Voice_Assistant
+                              ## Here is Currency_Converter_With_Voice_Assistant
 
 #These are required modules
 import requests 
@@ -84,8 +84,11 @@ class CurrencyConverter(tk.Frame):
         Audio_Button = tk.Button(self,text="Hear It", command=self.Hear, bg="blue", fg="black", width=6, height=1,borderwidth=4, relief=GROOVE)
         Audio_Button.grid(row=9, column=4)
 
-#Here We give Functionality to Covert button
+#Here is Functionality of Covert button
     def Convert(self):
+
+#this If-Else condition throughs an error , if user hits Convert button without giving any input value
+
         if(self.input__.get()==""):
             Result = "ERROR: Enter any Value to Convert" #If user gives nothing in input and hit convert button There shows an error
             self.Result_value2.set(Result)
@@ -94,25 +97,45 @@ class CurrencyConverter(tk.Frame):
             to__ = self.Choice_To.get() # gets choosen TO currency
             response = requests.get(f"https://api.nomics.com/v1/exchange-rates?key=d2ed4bee6312d6dc37e5f52ee2fbdc254d18d556")
 #Pulls Data from API and stores in Data
+
             Data = response.json() # converts HTML response to json Format
-            l1= list(filter(lambda person: person['currency'] == from__, Data)) 
-            l2 = list(filter(lambda person: person['currency'] == to__, Data)) 
+  
+# Here "list1" stores filtered list of Dictonary, containing Selected currency and its Exchange Rate
+
+            list1= list(filter(lambda person: person['currency'] == from__, Data)) 
+
+# Here "list2" stores filtered list of Dictonary, containing Selected currency and its Exchange Rate
+
+            list2 = list(filter(lambda person: person['currency'] == to__, Data)) 
             a_key = "rate"
-            v1 = [dict[a_key] for dict in l1]
-            v2 = [dict[a_key] for dict in l2]
-            n_2 = float(v2[0])
+
+# v1 stores rate of list1
+            v1 = [dict[a_key] for dict in list1]
+
+# v2 stores rate of list2
+            v2 = [dict[a_key] for dict in list2]
+            n_2 = float(v2[0]) #coverts v1 to float value
             n_1 = float(v1[0])
+
+# p1 stores user input value
+
             p1 = self.input__.get()
+
+# Logic of Conversion
+
             Result = float(p1)*(n_1/n_2)
             Result = format(Result, ".4f")
             self.Result_value1.set(Result)
-            c1 = "{:,}".format(float(Result))
-            self.Result_value2.set(c1)
+            c1 = "{:,}".format(float(Result)) # Adds comma(,) to result
+            self.Result_value2.set(c1) 
 
+#Here is Functionality of Hear button
 
     def Hear(self):
+
+#this If-Else condition throughs an error , if user hits hear button without giving any input value
         if(self.input__.get()==""):
-            Result = "ERROR: Enter any Value to Hear" #If user gives nothing in input and hit convert button There shows an error
+            Result = "ERROR: Enter any Value to Hear"
             self.Result_value2.set(Result)
         else:
             r1 = self.Result_value1.get()
