@@ -1,4 +1,4 @@
-                              ## Here is Currency_Converter_With_Voice_Assistant
+                              ## Here is Currency_Converter_With_Voice_Assistant (Using Tkinter)
 
 #These are required modules
 import requests 
@@ -8,6 +8,9 @@ from tkinter import *
 from num2words import num2words
 from gtts import gTTS
 import os
+
+#Here We initialize Tkinter
+ITW_root = tk.Tk()
 
 
 #class with name CurrencyConverter
@@ -37,8 +40,8 @@ class CurrencyConverter(tk.Frame):
         self.target_text.set("To:")
         self.amount = tk.StringVar()
         self.amount.set("0")
-        self.j1 = tk.StringVar()  
-        self.j1.set("")
+        self.Result_in_Words = tk.StringVar()  
+        self.Result_in_Words.set("")
         self.Result_value1 = tk.StringVar()
         self.Result_value1.set("0")
         self.Result_value2 = tk.StringVar()
@@ -72,7 +75,7 @@ class CurrencyConverter(tk.Frame):
 #Here We take input from user as an interger 
 
         self.input__ = tk.Label(self, text ="Enter", font=self.app_font, width=8)
-        self.input__= Entry(jairoot) #stores the values in input__
+        self.input__= Entry(ITW_root) #stores the values in input__
         self.input__.place(x=55, y=65)
 
 #Here we define Coverting Button and give Commands To them
@@ -95,7 +98,7 @@ class CurrencyConverter(tk.Frame):
         else:
             from__ = self.Choice_from.get() # gets choosen FROM currency
             to__ = self.Choice_To.get() # gets choosen TO currency
-            response = requests.get(f"https://api.nomics.com/v1/exchange-rates?key=d2ed4bee6312d6dc37e5f52ee2fbdc254d18d556")
+            response = requests.get(f"https://api.nomics.com/Rate_of_from_currency/exchange-rates?key=d2ed4bee6312d6dc37e5f52ee2fbdc254d18d556")
 #Pulls Data from API and stores in Data
 
             Data = response.json() # converts HTML response to json Format
@@ -109,25 +112,32 @@ class CurrencyConverter(tk.Frame):
             list2 = list(filter(lambda person: person['currency'] == to__, Data)) 
             a_key = "rate"
 
-# v1 stores rate of list1
-            v1 = [dict[a_key] for dict in list1]
+# Rate_of_from_currency stores rate of list1
+            Rate_of_from_currency = [dict[a_key] for dict in list1]
 
-# v2 stores rate of list2
-            v2 = [dict[a_key] for dict in list2]
-            n_2 = float(v2[0]) #coverts v1 to float value
-            n_1 = float(v1[0])
+# Rate_of_To_Currency stores rate of list2
+            Rate_of_To_Currency = [dict[a_key] for dict in list2]
+            RateOf_From = float(Rate_of_from_currency[0]) #coverts Rate_of_from_currency to float value
+            RateOf_To = float(Rate_of_To_Currency[0])
 
-# p1 stores user input value
+# User_Input stores user input value
 
-            p1 = self.input__.get()
+            User_Input = self.input__.get()
 
-# Logic of Conversion
+# Logic of Conversion:
 
-            Result = float(p1)*(n_1/n_2)
+# Rate = Base Currency / USD
+# RateOf_From = Selected FROM Currency / USD
+# RateOf_To = Selected TO Currency / USD
+# Required rate = RateOf_From / RateOf_To
+# Result = User_Input(user input) * Required Rate 
+
+
+            Result = float(User_Input)*(RateOf_From/RateOf_To)
             Result = format(Result, ".4f")
             self.Result_value1.set(Result)
-            c1 = "{:,}".format(float(Result)) # Adds comma(,) to result
-            self.Result_value2.set(c1) 
+            Adding_Comma = "{:,}".format(float(Result)) # Adds comma(,) to result
+            self.Result_value2.set(Adding_Comma) 
 
 #Here is Functionality of Hear button
 
@@ -138,32 +148,30 @@ class CurrencyConverter(tk.Frame):
             Result = "ERROR: Enter any Value to Hear"
             self.Result_value2.set(Result)
         else:
-            r1 = self.Result_value1.get()
-            self.Result_value1.set(r1)
-            j1 = num2words(r1)
+            Result_stored_withoutComma = self.Result_value1.get()
+            self.Result_value1.set(Result_stored_withoutComma)
+            Result_in_Words = num2words(Result_stored_withoutComma)
             language = "en"
-            speech1 = gTTS(text=j1, lang=language, slow= False)
-            speech1.save("InSpeech.mp3")
+            Coverted_Speech = gTTS(text=Result_in_Words, lang=language, slow= False)
+            Coverted_Speech.save("InSpeech.mp3")
             os.system("InSpeech.mp3")
     def close(self):
         if(self.input__.get()==""):
             self.parent.destroy()
         else:
             self.parent.destroy()
-            if(self.j1.get()==""):
+            if(self.Result_in_Words.get()==""):
                 pass
             else:
-                os.remove("InSpeech.mp3")
+                os.remove("InSpeech.mp3") # Deletes InSpeech.mp3 After close app, to save storage
             
         
-jairoot = tk.Tk()
-
 # Setting an icon For GUI
-jairoot.wm_iconbitmap("Icon1.ico")
-CurrencyConverter(jairoot)
+ITW_root.wm_iconbitmap("Icon1.ico")
+CurrencyConverter(ITW_root) #Calling Class
 
 # Running main loop
-jairoot.mainloop()
+ITW_root.mainloop()
 
 
     
