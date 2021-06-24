@@ -3,7 +3,9 @@
 ## Features of Crypto-Currency-To-INR-with-Voice-Assistant:
 
 ⏩ We can convert crypto currencies to Required currencies (As a demo we included only top currencies)
+
 ⏩ Simple and Handy to use 
+
 ⏩ Hear It Button (which allows to hear the converted value of currency)
   
 ## API Sources:
